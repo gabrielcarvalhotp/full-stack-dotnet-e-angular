@@ -11,9 +11,7 @@ namespace ProEvents.API.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        public EventsController()
-        {
-        }
+        public EventsController() { }
 
         [HttpGet]
         public IActionResult Get() => Ok("Sucess");
