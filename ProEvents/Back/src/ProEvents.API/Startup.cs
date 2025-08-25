@@ -28,6 +28,7 @@ namespace ProEvents.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructure(Configuration);
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +49,13 @@ namespace ProEvents.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(accept =>
+            {
+                accept.AllowAnyHeader();
+                accept.AllowAnyMethod();
+                accept.AllowAnyOrigin();
+            });
 
             app.UseAuthorization();
 

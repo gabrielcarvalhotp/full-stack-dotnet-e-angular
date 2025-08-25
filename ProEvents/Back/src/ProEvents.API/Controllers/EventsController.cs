@@ -9,7 +9,7 @@ using ProEvents.Infrastructure.DataAccess;
 namespace ProEvents.API.Controllers
 {
     [ApiController]
-    [Route("v1/[controller]")]
+    [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
         private readonly AppDbContext _context;
