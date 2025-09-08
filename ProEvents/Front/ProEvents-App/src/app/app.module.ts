@@ -8,15 +8,22 @@ import { EventsComponent } from './events/events.component';
 import { SpeakersComponent } from './speakers/speakers.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NavComponent } from './nav/nav.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 @NgModule({
-  declarations: [AppComponent, EventsComponent, SpeakersComponent],
+  declarations: [
+    AppComponent,
+    EventsComponent,
+    SpeakersComponent,
+    NavComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
+    CollapseModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
