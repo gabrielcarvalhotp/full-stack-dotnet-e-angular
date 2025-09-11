@@ -20,11 +20,16 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="events && events.length > 0">
     <tr *ngFor="let event of events">
       <td>{{ event.id }}</td>
       <td>
-        <img class="img-rounded img-responsive" src="{{ event.imageURL }}" />
+        <img
+          [style.width.px]="widthImg"
+          [style.margin.px]="marginImg"
+          src="\assets/{{ event.imageURL }}"
+          alt=" {{ event.imageURL }}"
+        />
       </td>
       <td>{{ event.theme }}</td>
       <td>{{ event.location }}</td>
@@ -41,4 +46,11 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr *ngIf="events && events.length == 0">
+      <td colspan="8" class="text-center">
+        <h4>Nenhum evento encontrado</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
