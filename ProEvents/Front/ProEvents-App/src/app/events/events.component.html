@@ -1,17 +1,32 @@
 <h2>Eventos</h2>
 <hr />
 
-<form action="" class="form-inline">
+<div class="form-inline">
   <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="Buscar" />
+    <input
+      type="text"
+      class="form-control mr-2"
+      placeholder="Buscar"
+      [(ngModel)]="listFilter"
+    />
     <button class="btn btn-outline-success">Buscar</button>
   </div>
-</form>
+</div>
+<h3>Filtro: {{ listFilter }}</h3>
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
+      <th>
+        <button
+          type="button"
+          class="btn btn-outline-light btn-sm"
+          (click)="showImage = !showImage"
+        >
+          <i *ngIf="showImage" class="fa fa-eye"></i>
+          <i *ngIf="!showImage" class="fa fa-eye-slash"></i>
+        </button>
+      </th>
       <th>#</th>
-      <th>Imagem</th>
       <th>Tema</th>
       <th>Local</th>
       <th>Data</th>
@@ -22,15 +37,17 @@
   </thead>
   <tbody *ngIf="events && events.length > 0">
     <tr *ngFor="let event of events">
-      <td>{{ event.id }}</td>
       <td>
         <img
+          [collapse]="!showImage"
+          [isAnimated]="true"
           [style.width.px]="widthImg"
           [style.margin.px]="marginImg"
           src="\assets/{{ event.imageURL }}"
           alt=" {{ event.imageURL }}"
         />
       </td>
+      <td>{{ event.id }}</td>
       <td>{{ event.theme }}</td>
       <td>{{ event.location }}</td>
       <td>

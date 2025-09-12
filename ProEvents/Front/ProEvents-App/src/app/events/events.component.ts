@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
   public events: any[] = [];
-  public widthImg = 50;
+
+  public widthImg = 150;
   public marginImg = 2;
+  public showImage = true;
+  public listFilter = '';
 
   constructor(private http: HttpClient) {}
 
