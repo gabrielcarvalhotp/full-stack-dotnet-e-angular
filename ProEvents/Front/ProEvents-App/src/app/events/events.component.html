@@ -3,16 +3,15 @@
 
 <div class="form-inline">
   <div class="form-group mb-2">
+    <label class="mr-2">Filtro: </label>
     <input
       type="text"
       class="form-control mr-2"
       placeholder="Buscar"
       [(ngModel)]="searchText"
     />
-    <button class="btn btn-outline-success">Buscar</button>
   </div>
 </div>
-<h3>Filtro: {{ searchText }}</h3>
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
@@ -55,11 +54,12 @@
         <span class="time">{{ event.eventDate | date : "HH:mm" }}</span>
       </td>
       <td>{{ event.numberPeople }}</td>
-      <td>{{ event.lote }}</td>
+      <td>{{ event.batch }}</td>
       <td>
-        <button class="btn btn-primary">Detalhes</button>
-        <button class="btn btn-primary">Editar</button>
-        <button class="btn btn-danger">Excluir</button>
+        <button type="button" class="btn btn-primary btn-sm mr-2">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
       </td>
     </tr>
   </tbody>

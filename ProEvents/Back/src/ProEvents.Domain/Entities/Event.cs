@@ -14,5 +14,6 @@ namespace ProEvents.Domain.Entities
         public string ImageURL { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public int Batch { get; set; }
     }
 }
