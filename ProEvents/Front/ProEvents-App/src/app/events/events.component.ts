@@ -7,12 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  public events: any[] = [];
-
+  private _events: any[] = [];
   public widthImg = 150;
   public marginImg = 2;
   public showImage = true;
-  public listFilter = '';
+  private _searchText = '';
+
+  public get events(): any[] {
+    return this._events.filter(
+      (event) =>
+        event.theme.toLowerCase().includes(this._searchText.toLowerCase()) ||
+        event.location.toLowerCase().includes(this._searchText.toLowerCase())
+    );
+  }
+
+  public get searchText(): string {
+    return this._searchText;
+  }
+
+  public set searchText(value: string) {
+    this._searchText = value;
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +37,7 @@ export class EventsComponent implements OnInit {
 
   private getEvents() {
     this.http.get('https://localhost:5001/api/events').subscribe(
-      (response) => (this.events = response as any[]),
+      (response) => (this._events = response as any[]),
       (error) => console.log(error)
     );
   }
