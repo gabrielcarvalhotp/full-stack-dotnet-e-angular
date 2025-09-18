@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProEvents.Infrastructure.DataAccess;
+using ProEvents.Infrastructure.Context;
 
 namespace ProEvents.API.Controllers
 {

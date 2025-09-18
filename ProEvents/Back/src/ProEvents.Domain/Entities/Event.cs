@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProEvents.Domain.Entities
 {
@@ -14,6 +12,8 @@ namespace ProEvents.Domain.Entities
         public string ImageURL { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public int Batch { get; set; }
+        public IEnumerable<Batch> Batchs { get; set; }
+        public IEnumerable<SocialMedia> SocialMedias { get; set; }
+        public IEnumerable<EventSpeaker> EventSpeakers { get; set; }
     }
 }
