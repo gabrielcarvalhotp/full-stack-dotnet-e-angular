@@ -31,14 +31,14 @@ namespace ProEvents.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public Task<Event> GetEventByIdAsync(int eventId, bool includeSpeakers = false)
+        public async Task<Event> GetEventByIdAsync(int eventId, bool includeSpeakers = false)
         {
             return includeSpeakers ?
-                _context.Events
+                await _context.Events
                     .Include(e => e.EventSpeakers)
                     .ThenInclude(es => es.Speaker)
                     .FirstOrDefaultAsync(e => e.Id == eventId) :
-                _context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+                await _context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
         }
     }
 }
