@@ -9,7 +9,7 @@ namespace ProEvents.Infrastructure.Abstractions
 {
     public class ReposiroryBase : IRepository
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         public ReposiroryBase(AppDbContext context)
         {
             _context = context;
