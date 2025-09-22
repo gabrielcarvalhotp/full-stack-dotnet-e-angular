@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProEvents.Domain.Entities;
@@ -13,7 +14,7 @@ namespace ProEvents.Infrastructure.Repositories
     {
         public EventRepository(AppDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<Event>> GetAllEventsAsync(bool includeSpeakers = false)
+        public async Task<IEnumerable<Event>> GetAllEventsAsync(bool includeSpeakers = false, CancellationToken cancellationToken = default)
         {
             IQueryable<Event> query = _context.Events
                 .AsNoTracking()
@@ -28,17 +29,24 @@ namespace ProEvents.Infrastructure.Repositories
                     .ThenInclude(es => es.Speaker);
             }
 
-            return await query.ToListAsync();
+            return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task<Event> GetEventByIdAsync(int eventId, bool includeSpeakers = false)
+        public async Task<Event> GetEventByIdAsync(int eventId, bool includeSpeakers = false, CancellationToken cancellationToken = default)
         {
-            return includeSpeakers ?
-                await _context.Events
+            IQueryable<Event> query = _context.Events
+                .AsNoTracking()
+                .Include(e => e.Batchs)
+                .Include(e => e.SocialMedias);
+
+            if (includeSpeakers)
+            {
+                query = query
                     .Include(e => e.EventSpeakers)
-                    .ThenInclude(es => es.Speaker)
-                    .FirstOrDefaultAsync(e => e.Id == eventId) :
-                await _context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+                    .ThenInclude(es => es.Speaker);
+            }
+
+            return await query.FirstOrDefaultAsync(e => e.Id == eventId, cancellationToken);
         }
     }
 }
