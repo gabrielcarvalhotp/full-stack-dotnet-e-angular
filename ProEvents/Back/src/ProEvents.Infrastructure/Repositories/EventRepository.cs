@@ -10,7 +10,7 @@ using ProEvents.Infrastructure.Context;
 
 namespace ProEvents.Infrastructure.Repositories
 {
-    public class EventRepository : ReposiroryBase, IEventRepository
+    public class EventRepository : RepositoryBase, IEventRepository
     {
         public EventRepository(AppDbContext context) : base(context) { }
 

@@ -9,10 +9,10 @@ using ProEvents.Infrastructure.Context;
 
 namespace ProEvents.Infrastructure.Abstractions
 {
-    public class ReposiroryBase : IRepository
+    public class RepositoryBase : IRepository
     {
         protected readonly AppDbContext _context;
-        public ReposiroryBase(AppDbContext context)
+        public RepositoryBase(AppDbContext context)
         {
             _context = context;
         }
