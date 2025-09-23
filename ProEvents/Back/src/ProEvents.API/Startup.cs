@@ -31,7 +31,13 @@ namespace ProEvents.API
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddCors();
-            services.AddControllers();
+
+            services.AddControllers()
+                    .AddNewtonsoftJson(options =>
+                    {
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEvents.API", Version = "v1" });

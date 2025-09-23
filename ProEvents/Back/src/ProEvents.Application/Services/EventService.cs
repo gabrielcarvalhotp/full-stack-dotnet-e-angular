@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -61,7 +62,7 @@ namespace ProEvents.Application.Services
             myEvent.ImageURL = @event.ImageURL;
             myEvent.Phone = @event.Phone;
             myEvent.Email = @event.Email;
-
+            
             _eventRepository.Update(myEvent);
             await _eventRepository.SaveChangesAsync();
             return await _eventRepository.GetEventByIdAsync(eventId);
