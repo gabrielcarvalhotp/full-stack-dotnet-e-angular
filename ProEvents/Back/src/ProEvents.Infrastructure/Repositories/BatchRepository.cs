@@ -10,7 +10,7 @@ using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Repositories
 {
-    public class BatchRepository : RepositoryBase, IBatchRepository
+    public class BatchRepository : RepositoryBase<Batch>, IBatchRepository
     {
         public BatchRepository(AppDbContext context) : base(context) { }
 

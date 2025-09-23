@@ -10,7 +10,7 @@ using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Repositories
 {
-    public class SocialMediaRepository : RepositoryBase, ISocialMediaRepository
+    public class SocialMediaRepository : RepositoryBase<SocialMedia>, ISocialMediaRepository
     {
         public SocialMediaRepository(AppDbContext context) : base(context) { }
 

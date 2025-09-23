@@ -8,7 +8,7 @@ using ProEvents.Domain.Entities;
 
 namespace ProEvents.Infrastructure.Abstractions
 {
-    public interface ISpeakerRepository : IRepository
+    public interface ISpeakerRepository : IRepository<Speaker>
     {
         public Task<IEnumerable<Speaker>> GetAllSpeakersAsync(bool includeEvent = false, CancellationToken cancellationToken = default);
         public Task<Speaker> GetSpeakerByIdAsync(int speakerId, bool includeEvent = false, CancellationToken cancellationToken = default);

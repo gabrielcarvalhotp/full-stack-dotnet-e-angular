@@ -9,7 +9,7 @@ using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Abstractions
 {
-    public abstract class RepositoryBase : IRepository
+    public abstract class RepositoryBase<T> : IRepository<T> where T : Entity
     {
         protected readonly AppDbContext _context;
         public RepositoryBase(AppDbContext context)
@@ -17,22 +17,22 @@ namespace ProEvents.Infrastructure.Abstractions
             _context = context;
         }
 
-        public async Task AddAsync<T>(T entity, CancellationToken cancellationToken = default) where T : Entity
+        public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _context.AddAsync(entity, cancellationToken);
         }
 
-        public void Update<T>(T entity) where T : Entity
+        public void Update(T entity)
         {
             _context.Update(entity);
         }
 
-        public void Delete<T>(T entity) where T : Entity
+        public void Delete(T entity)
         {
             _context.Remove(entity);
         }
 
-        public void DeleteRange<T>(T[] entityArray) where T : Entity
+        public void DeleteRange(T[] entityArray)
         {
             _context.RemoveRange(entityArray);
         }

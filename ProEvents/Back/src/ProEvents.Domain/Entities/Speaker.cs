@@ -13,7 +13,6 @@ namespace ProEvents.Domain.Entities
         public string Phone { get; set; }
         public string Email { get; set; }
         public IEnumerable<SocialMedia> SocialMedias { get; set; }
-        public IEnumerable<EventSpeaker> Events { get; set; }
-        public IEnumerable<EventSpeaker> EventSpeakers { get; set; }
+        public IEnumerable<EventSpeaker> EventSpeakers { get; } = new List<EventSpeaker>();
     }
 }

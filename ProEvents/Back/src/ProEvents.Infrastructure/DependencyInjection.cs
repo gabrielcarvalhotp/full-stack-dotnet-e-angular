@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProEvents.Infrastructure.Abstractions;
 using ProEvents.Infrastructure.Contexts;
+using ProEvents.Infrastructure.Repositories;
 
 namespace ProEvents.Infrastructure
 {
@@ -10,6 +12,7 @@ namespace ProEvents.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             AddDbContext(services, configuration);
+            AddRepositories(services);
             return services;
         }
 
@@ -19,6 +22,14 @@ namespace ProEvents.Infrastructure
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
+        }
+
+        public static void AddRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<ISpeakerRepository, SpeakerRepository>();
+            services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
+            services.AddScoped<IBatchRepository, BatchRepository>();
         }
 
     }

@@ -14,6 +14,6 @@ namespace ProEvents.Domain.Entities
         public string Email { get; set; }
         public IEnumerable<Batch> Batchs { get; set; }
         public IEnumerable<SocialMedia> SocialMedias { get; set; }
-        public IEnumerable<EventSpeaker> EventSpeakers { get; set; }
+        public IEnumerable<EventSpeaker> EventSpeakers { get; } = new List<EventSpeaker>();
     }
 }

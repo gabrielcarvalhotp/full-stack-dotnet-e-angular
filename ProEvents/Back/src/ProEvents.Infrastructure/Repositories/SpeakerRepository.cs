@@ -10,7 +10,7 @@ using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Repositories
 {
-    public class SpeakerRepository : RepositoryBase, ISpeakerRepository
+    public class SpeakerRepository : RepositoryBase<Speaker>, ISpeakerRepository
     {
         public SpeakerRepository(AppDbContext context) : base(context) { }
 

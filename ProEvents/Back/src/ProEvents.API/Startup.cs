@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProEvents.Infrastructure;
+using ProEvents.Application;
 
 namespace ProEvents.API
 {
@@ -27,6 +28,7 @@ namespace ProEvents.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddCors();
             services.AddControllers();

@@ -20,7 +20,20 @@ namespace ProEvents.Infrastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EventSpeaker>().HasKey(es => new { es.EventId, es.SpeakerId });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<EventSpeaker>()
+                .HasKey(es => new { es.EventId, es.SpeakerId });
+
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.SocialMedias)
+                .WithOne(s => s.Event)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Speaker>()
+                .HasMany(s => s.SocialMedias)
+                .WithOne(s => s.Speaker)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

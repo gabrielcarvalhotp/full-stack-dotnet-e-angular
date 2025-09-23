@@ -11,7 +11,7 @@ namespace ProEvents.Infrastructure.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Location = table.Column<string>(type: "TEXT", nullable: true),
                     EventDate = table.Column<DateTime>(type: "TEXT", nullable: true),
@@ -30,7 +30,7 @@ namespace ProEvents.Infrastructure.Migrations
                 name: "Speakers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     MiniCurriculum = table.Column<string>(type: "TEXT", nullable: true),
@@ -47,107 +47,97 @@ namespace ProEvents.Infrastructure.Migrations
                 name: "Batchs",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    EventId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EventId1 = table.Column<long>(type: "INTEGER", nullable: true)
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Batchs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Batchs_Events_EventId1",
-                        column: x => x.EventId1,
+                        name: "FK_Batchs_Events_EventId",
+                        column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "EventsSpeakers",
                 columns: table => new
                 {
-                    EventId = table.Column<int>(type: "INTEGER", nullable: false),
                     SpeakerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EventId1 = table.Column<long>(type: "INTEGER", nullable: true),
-                    SpeakerId1 = table.Column<long>(type: "INTEGER", nullable: true)
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventsSpeakers", x => new { x.EventId, x.SpeakerId });
                     table.ForeignKey(
-                        name: "FK_EventsSpeakers_Events_EventId1",
-                        column: x => x.EventId1,
+                        name: "FK_EventsSpeakers_Events_EventId",
+                        column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EventsSpeakers_Speakers_SpeakerId1",
-                        column: x => x.SpeakerId1,
+                        name: "FK_EventsSpeakers_Speakers_SpeakerId",
+                        column: x => x.SpeakerId,
                         principalTable: "Speakers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SocialMedias",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     URL = table.Column<string>(type: "TEXT", nullable: true),
                     EventId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EventId1 = table.Column<long>(type: "INTEGER", nullable: true),
-                    SpeakerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SpeakerId1 = table.Column<long>(type: "INTEGER", nullable: true)
+                    SpeakerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SocialMedias", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SocialMedias_Events_EventId1",
-                        column: x => x.EventId1,
+                        name: "FK_SocialMedias_Events_EventId",
+                        column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SocialMedias_Speakers_SpeakerId1",
-                        column: x => x.SpeakerId1,
+                        name: "FK_SocialMedias_Speakers_SpeakerId",
+                        column: x => x.SpeakerId,
                         principalTable: "Speakers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Batchs_EventId1",
+                name: "IX_Batchs_EventId",
                 table: "Batchs",
-                column: "EventId1");
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventsSpeakers_EventId1",
+                name: "IX_EventsSpeakers_SpeakerId",
                 table: "EventsSpeakers",
-                column: "EventId1");
+                column: "SpeakerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventsSpeakers_SpeakerId1",
-                table: "EventsSpeakers",
-                column: "SpeakerId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SocialMedias_EventId1",
+                name: "IX_SocialMedias_EventId",
                 table: "SocialMedias",
-                column: "EventId1");
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialMedias_SpeakerId1",
+                name: "IX_SocialMedias_SpeakerId",
                 table: "SocialMedias",
-                column: "SpeakerId1");
+                column: "SpeakerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -14,11 +14,11 @@ namespace ProEvents.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.17");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("ProEvents.Domain.Entities.Batch", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -26,9 +26,6 @@ namespace ProEvents.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("EventId1")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -45,14 +42,14 @@ namespace ProEvents.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId1");
+                    b.HasIndex("EventId");
 
                     b.ToTable("Batchs");
                 });
 
             modelBuilder.Entity("ProEvents.Domain.Entities.Event", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -90,31 +87,20 @@ namespace ProEvents.Infrastructure.Migrations
                     b.Property<int>("SpeakerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("EventId1")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("SpeakerId1")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("EventId", "SpeakerId");
 
-                    b.HasIndex("EventId1");
-
-                    b.HasIndex("SpeakerId1");
+                    b.HasIndex("SpeakerId");
 
                     b.ToTable("EventsSpeakers");
                 });
 
             modelBuilder.Entity("ProEvents.Domain.Entities.SocialMedia", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("EventId1")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -123,24 +109,21 @@ namespace ProEvents.Infrastructure.Migrations
                     b.Property<int>("SpeakerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("SpeakerId1")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("URL")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId1");
+                    b.HasIndex("EventId");
 
-                    b.HasIndex("SpeakerId1");
+                    b.HasIndex("SpeakerId");
 
                     b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("ProEvents.Domain.Entities.Speaker", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -168,7 +151,9 @@ namespace ProEvents.Infrastructure.Migrations
                 {
                     b.HasOne("ProEvents.Domain.Entities.Event", "Event")
                         .WithMany("Batchs")
-                        .HasForeignKey("EventId1");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Event");
                 });
@@ -177,11 +162,15 @@ namespace ProEvents.Infrastructure.Migrations
                 {
                     b.HasOne("ProEvents.Domain.Entities.Event", "Event")
                         .WithMany("EventSpeakers")
-                        .HasForeignKey("EventId1");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProEvents.Domain.Entities.Speaker", "Speaker")
-                        .WithMany("Events")
-                        .HasForeignKey("SpeakerId1");
+                        .WithMany("EventSpeakers")
+                        .HasForeignKey("SpeakerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Event");
 
@@ -192,11 +181,15 @@ namespace ProEvents.Infrastructure.Migrations
                 {
                     b.HasOne("ProEvents.Domain.Entities.Event", "Event")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("EventId1");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProEvents.Domain.Entities.Speaker", "Speaker")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("SpeakerId1");
+                        .HasForeignKey("SpeakerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Event");
 
@@ -214,7 +207,7 @@ namespace ProEvents.Infrastructure.Migrations
 
             modelBuilder.Entity("ProEvents.Domain.Entities.Speaker", b =>
                 {
-                    b.Navigation("Events");
+                    b.Navigation("EventSpeakers");
 
                     b.Navigation("SocialMedias");
                 });
