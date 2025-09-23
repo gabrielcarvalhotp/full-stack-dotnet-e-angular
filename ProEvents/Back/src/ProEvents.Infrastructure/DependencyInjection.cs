@@ -31,6 +31,5 @@ namespace ProEvents.Infrastructure
             services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
             services.AddScoped<IBatchRepository, BatchRepository>();
         }
-
     }
 }

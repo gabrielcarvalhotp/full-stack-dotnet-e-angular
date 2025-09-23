@@ -16,12 +16,15 @@ namespace ProEvents.Infrastructure.Repositories
 
         public async Task<Batch> GetBatchByIdAsync(int batchId, CancellationToken cancellationToken = default)
         {
-            return await _context.Batchs.FirstOrDefaultAsync(b => b.Id == batchId, cancellationToken);
+            return await _context.Batchs
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.Id == batchId, cancellationToken);
         }
 
         public async Task<IEnumerable<Batch>> GetBatchesByEventIdAsync(int eventId, CancellationToken cancellationToken = default)
         {
             return await _context.Batchs
+                .AsNoTracking()
                 .Where(b => b.EventId == eventId)
                 .ToListAsync(cancellationToken);
         }

@@ -16,11 +16,17 @@ namespace ProEvents.Infrastructure.Repositories
 
         public async Task<IEnumerable<SocialMedia>> GetSocialMediasByEventIdAsync(int eventId, CancellationToken cancellationToken = default)
         {
-            return await _context.SocialMedias.Where(sm => sm.EventId == eventId).ToListAsync(cancellationToken);
+            return await _context.SocialMedias
+                .AsNoTracking()
+                .Where(sm => sm.EventId == eventId)
+                .ToListAsync(cancellationToken);
         }
         public async Task<IEnumerable<SocialMedia>> GetSocialMediasBySpeakerIdAsync(int speakerId, CancellationToken cancellationToken = default)
         {
-            return await _context.SocialMedias.Where(sm => sm.SpeakerId == speakerId).ToListAsync(cancellationToken);
+            return await _context.SocialMedias
+                .AsNoTracking()
+                .Where(sm => sm.SpeakerId == speakerId)
+                .ToListAsync(cancellationToken);
         }
     }
 }
