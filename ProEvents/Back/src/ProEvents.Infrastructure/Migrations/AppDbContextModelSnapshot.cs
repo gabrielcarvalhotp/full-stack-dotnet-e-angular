@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProEvents.Infrastructure.Context;
+using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Migrations
 {

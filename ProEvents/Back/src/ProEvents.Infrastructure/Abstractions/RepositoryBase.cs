@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using ProEvents.Domain.Entities;
-using ProEvents.Infrastructure.Context;
+using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Abstractions
 {
-    public class RepositoryBase : IRepository
+    public abstract class RepositoryBase : IRepository
     {
         protected readonly AppDbContext _context;
         public RepositoryBase(AppDbContext context)

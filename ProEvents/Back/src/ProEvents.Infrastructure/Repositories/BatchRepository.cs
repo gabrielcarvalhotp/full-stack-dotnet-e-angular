@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProEvents.Domain.Entities;
 using ProEvents.Infrastructure.Abstractions;
-using ProEvents.Infrastructure.Context;
+using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Repositories
 {

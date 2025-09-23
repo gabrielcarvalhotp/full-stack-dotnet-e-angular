@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ProEvents.Domain.Entities;
 
-namespace ProEvents.Infrastructure.Context
+namespace ProEvents.Infrastructure.Contexts
 {
     public class AppDbContext : DbContext
     {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProEvents.Infrastructure.Context;
+using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure
 {
