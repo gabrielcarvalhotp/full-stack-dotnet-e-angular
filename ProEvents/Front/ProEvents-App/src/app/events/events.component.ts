@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-events',
@@ -29,14 +30,14 @@ export class EventsComponent implements OnInit {
     this._searchText = value;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
     this.getEvents();
   }
 
   private getEvents() {
-    this.http.get('https://localhost:5001/api/events').subscribe(
+    this.eventService.getEvents().subscribe(
       (response) => (this._events = response as any[]),
       (error) => console.log(error)
     );
