@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
+import { Event } from '../models/Event';
 
 @Component({
   selector: 'app-events',
@@ -8,13 +8,13 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  private _events: any[] = [];
+  private _events: Event[] = [];
   public widthImg = 150;
   public marginImg = 2;
   public showImage = true;
   private _searchText = '';
 
-  public get events(): any[] {
+  public get events(): Event[] {
     return this._events.filter(
       (event) =>
         event.theme.toLowerCase().includes(this._searchText.toLowerCase()) ||
@@ -36,7 +36,7 @@ export class EventsComponent implements OnInit {
     this.getEvents();
   }
 
-  private getEvents() {
+  private getEvents(): void {
     this.eventService.getEvents().subscribe(
       (response) => (this._events = response as any[]),
       (error) => console.log(error)

@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProEvents.Application.Abstractions;
 using ProEvents.Domain.Entities;
-using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.API.Controllers
 {
@@ -48,7 +43,7 @@ namespace ProEvents.API.Controllers
             var updatedEvent = await _eventService.UpdateEventAsync(id, @event);
             return Ok(updatedEvent);
         }
-        
+
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

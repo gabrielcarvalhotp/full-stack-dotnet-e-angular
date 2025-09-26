@@ -1,15 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Event } from '../models/Event';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EventService {
-  BASE_URL = 'https://localhost:5001/api/events';
+  private baseUrl = 'https://localhost:5001/api/events';
 
   constructor(private http: HttpClient) {}
 
-  getEvents() {
-    return this.http.get(this.BASE_URL);
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl);
+  }
+
+  getEventById(id: number): Observable<Event> {
+    return this.http.get<Event>(`${this.baseUrl}/${id}`);
   }
 }
