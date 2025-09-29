@@ -62,7 +62,11 @@
         <button type="button" class="btn btn-primary btn-sm mr-2">
           <i class="fa fa-edit" tooltip="Editar"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="openModal(template)"
+        >
           <i class="fa fa-times" tooltip="Excluir"></i>
         </button>
       </td>
@@ -76,3 +80,15 @@
     </tr>
   </tfoot>
 </table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Deseja realmente excluir esse evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Não
+    </button>
+  </div>
+</ng-template>

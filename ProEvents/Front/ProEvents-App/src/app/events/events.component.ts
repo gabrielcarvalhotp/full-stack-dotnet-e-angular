@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { Event } from '../models/Event';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-events',
@@ -13,6 +15,13 @@ export class EventsComponent implements OnInit {
   public marginImg = 2;
   public showImage = true;
   private _searchText = '';
+  public modalRef: BsModalRef;
+
+  constructor(
+    private eventService: EventService,
+    private modalService: BsModalService,
+    private notificationService: NotificationService
+  ) {}
 
   public get events(): Event[] {
     return this._events.filter(
@@ -30,8 +39,6 @@ export class EventsComponent implements OnInit {
     this._searchText = value;
   }
 
-  constructor(private eventService: EventService) {}
-
   ngOnInit(): void {
     this.getEvents();
   }
@@ -41,5 +48,18 @@ export class EventsComponent implements OnInit {
       (response) => (this._events = response as any[]),
       (error) => console.log(error)
     );
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.notificationService.showSuccess('Evento excluido com sucesso!');
+    this.modalRef.hide();
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 }
