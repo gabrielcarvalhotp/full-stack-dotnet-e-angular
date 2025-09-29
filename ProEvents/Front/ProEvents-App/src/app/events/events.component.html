@@ -50,8 +50,7 @@
       <td>{{ event.theme }}</td>
       <td>{{ event.location }}</td>
       <td>
-        {{ event.eventDate | date : "dd/MM/yyyy" }}
-        <span class="time">{{ event.eventDate | date : "HH:mm" }}</span>
+        {{ event.eventDate | DateTimeFormat }}
       </td>
       <td>{{ event.numberPeople }}</td>
       <td>{{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}</td>

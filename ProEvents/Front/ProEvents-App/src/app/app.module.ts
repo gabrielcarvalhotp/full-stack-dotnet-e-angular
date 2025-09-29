@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { EventService } from './services/event.service';
+import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     SpeakersComponent,
     NavComponent,
+    DateTimeFormatPipe,
   ],
   imports: [
     BrowserModule,
