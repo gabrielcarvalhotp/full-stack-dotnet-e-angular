@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,10 @@ import { NotificationService } from './services/notification.service';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule,
   ],
   providers: [EventService, NotificationService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

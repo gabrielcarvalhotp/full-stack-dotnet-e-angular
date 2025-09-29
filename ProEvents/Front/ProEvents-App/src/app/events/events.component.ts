@@ -3,6 +3,7 @@ import { EventService } from '../services/event.service';
 import { Event } from '../models/Event';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../services/notification.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-events',
@@ -20,7 +21,8 @@ export class EventsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private modalService: BsModalService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private spinner: NgxSpinnerService
   ) {}
 
   public get events(): Event[] {
@@ -41,6 +43,13 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEvents();
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
   }
 
   private getEvents(): void {
