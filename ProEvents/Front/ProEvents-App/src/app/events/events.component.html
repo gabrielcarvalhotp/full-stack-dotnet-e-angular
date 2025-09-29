@@ -21,8 +21,12 @@
           class="btn btn-outline-light btn-sm"
           (click)="showImage = !showImage"
         >
-          <i *ngIf="showImage" class="fa fa-eye"></i>
-          <i *ngIf="!showImage" class="fa fa-eye-slash"></i>
+          <i *ngIf="showImage" class="fa fa-eye" tooltip="Mostrar imagens"></i>
+          <i
+            *ngIf="!showImage"
+            class="fa fa-eye-slash"
+            tooltip="Ocultar imagens"
+          ></i>
         </button>
       </th>
       <th>#</th>
@@ -56,10 +60,10 @@
       <td>{{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm mr-2">
-          <i class="fa fa-edit"></i>
+          <i class="fa fa-edit" tooltip="Editar"></i>
         </button>
         <button type="button" class="btn btn-danger btn-sm">
-          <i class="fa fa-times"></i>
+          <i class="fa fa-times" tooltip="Excluir"></i>
         </button>
       </td>
     </tr>
