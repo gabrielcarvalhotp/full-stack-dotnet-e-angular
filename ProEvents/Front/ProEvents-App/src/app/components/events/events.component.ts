@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { Event } from '../models/Event';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { NotificationService } from '../services/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Event } from 'src/app/models/Event';
+import { EventService } from 'src/app/services/event.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-events',
@@ -43,20 +43,23 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEvents();
-    /** spinner starts on init */
-    this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
   }
 
   private getEvents(): void {
-    this.eventService.getEvents().subscribe(
-      (response) => (this._events = response as any[]),
-      (error) => console.log(error)
-    );
+    this.spinner.show();
+    this.eventService.getEvents().subscribe({
+      next: (events: Event[]) => {
+        this._events = events;
+      },
+      error: (error: any) => {
+        this.spinner.hide();
+        this.notificationService.showError(
+          'Não foi possível carregar os eventos. Tente novamente mais tarde.'
+        );
+        console.log(error);
+      },
+      complete: () => this.spinner.hide(),
+    });
   }
 
   openModal(template: TemplateRef<any>) {
