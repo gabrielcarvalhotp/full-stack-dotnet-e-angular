@@ -1,2 +1,14 @@
-<h2>{{ title }}</h2>
-<hr />
+<div
+  class="d-flex align-items-center text-white p-3 my-3 bg-secondary rounded shadow-sm"
+>
+  <div class="d-flex align-items-center mr-auto">
+    <i class="{{ iconClass }} mr-3"></i>
+    <div class="lh-100">
+      <h2 class="mb-0">{{ title }}</h2>
+      <small>{{ subtitle }}</small>
+    </div>
+  </div>
+  <div *ngIf="buttonSearchVisible">
+    <button class="btn btn-outline-light">Buscar dados</button>
+  </div>
+</div>
