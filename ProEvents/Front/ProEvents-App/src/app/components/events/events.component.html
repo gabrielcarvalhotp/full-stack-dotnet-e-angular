@@ -1,84 +1,92 @@
 <app-title [title]="'Eventos'" [iconClass]="'fa fa-calendar'"></app-title>
 
-<div class="form-inline">
-  <div class="form-group mb-2">
-    <label class="mr-2">Filtro: </label>
-    <input
-      type="text"
-      class="form-control mr-2"
-      placeholder="Buscar"
-      [(ngModel)]="searchText"
-    />
+<div class="card p-3 rounded shadow-sm">
+  <div class="d-flex">
+    <div class="form-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Filtro:</div>
+      </div>
+      <input
+        type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="searchText"
+      />
+    </div>
   </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          <button
+            type="button"
+            class="btn btn-outline-light btn-sm"
+            (click)="showImage = !showImage"
+          >
+            <i
+              *ngIf="showImage"
+              class="fa fa-eye"
+              tooltip="Mostrar imagens"
+            ></i>
+            <i
+              *ngIf="!showImage"
+              class="fa fa-eye-slash"
+              tooltip="Ocultar imagens"
+            ></i>
+          </button>
+        </th>
+        <th>#</th>
+        <th>Tema</th>
+        <th>Local</th>
+        <th>Data</th>
+        <th>Qtde. Palestrantes</th>
+        <th>Lote</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="events && events.length > 0">
+      <tr *ngFor="let event of events">
+        <td>
+          <img
+            [collapse]="!showImage"
+            [isAnimated]="true"
+            [style.width.px]="widthImg"
+            [style.margin.px]="marginImg"
+            src="\assets/{{ event.imageURL }}"
+            alt=" {{ event.imageURL }}"
+          />
+        </td>
+        <td>{{ event.id }}</td>
+        <td>{{ event.theme }}</td>
+        <td>{{ event.location }}</td>
+        <td>
+          {{ event.eventDate | DateTimeFormat }}
+        </td>
+        <td>{{ event.numberPeople }}</td>
+        <td>{{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm mr-2">
+            <i class="fa fa-edit" tooltip="Editar"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="openModal(template)"
+          >
+            <i class="fa fa-times" tooltip="Excluir"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr *ngIf="events && events.length == 0">
+        <td colspan="8" class="text-center">
+          <h4>Nenhum evento encontrado</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>
-        <button
-          type="button"
-          class="btn btn-outline-light btn-sm"
-          (click)="showImage = !showImage"
-        >
-          <i *ngIf="showImage" class="fa fa-eye" tooltip="Mostrar imagens"></i>
-          <i
-            *ngIf="!showImage"
-            class="fa fa-eye-slash"
-            tooltip="Ocultar imagens"
-          ></i>
-        </button>
-      </th>
-      <th>#</th>
-      <th>Tema</th>
-      <th>Local</th>
-      <th>Data</th>
-      <th>Qtde. Palestrantes</th>
-      <th>Lote</th>
-      <th>Opções</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="events && events.length > 0">
-    <tr *ngFor="let event of events">
-      <td>
-        <img
-          [collapse]="!showImage"
-          [isAnimated]="true"
-          [style.width.px]="widthImg"
-          [style.margin.px]="marginImg"
-          src="\assets/{{ event.imageURL }}"
-          alt=" {{ event.imageURL }}"
-        />
-      </td>
-      <td>{{ event.id }}</td>
-      <td>{{ event.theme }}</td>
-      <td>{{ event.location }}</td>
-      <td>
-        {{ event.eventDate | DateTimeFormat }}
-      </td>
-      <td>{{ event.numberPeople }}</td>
-      <td>{{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}</td>
-      <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">
-          <i class="fa fa-edit" tooltip="Editar"></i>
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger btn-sm"
-          (click)="openModal(template)"
-        >
-          <i class="fa fa-times" tooltip="Excluir"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr *ngIf="events && events.length == 0">
-      <td colspan="8" class="text-center">
-        <h4>Nenhum evento encontrado</h4>
-      </td>
-    </tr>
-  </tfoot>
-</table>
 
 <ng-template #template>
   <div class="modal-body text-center">
