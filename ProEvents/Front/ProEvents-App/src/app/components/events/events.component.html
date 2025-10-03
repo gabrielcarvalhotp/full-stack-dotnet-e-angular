@@ -2,22 +2,30 @@
 
 <div class="card p-3 rounded shadow-sm">
   <div class="d-flex">
-    <div class="form-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text">Filtro:</div>
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Filtro:</div>
+        </div>
+        <input
+          type="text"
+          class="form-control mr-2"
+          placeholder="Digite para filtrar..."
+          [(ngModel)]="searchText"
+        />
       </div>
-      <input
-        type="text"
-        class="form-control mr-2"
-        placeholder="Buscar"
-        [(ngModel)]="searchText"
-      />
+    </div>
+    <div>
+      <a href="#" class="d-flex btn btn-outline-primary">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
     </div>
   </div>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
-        <th>
+        <th class="d-none d-sm-table-cell">
           <button
             type="button"
             class="btn btn-outline-light btn-sm"
@@ -37,16 +45,16 @@
         </th>
         <th>#</th>
         <th>Tema</th>
-        <th>Local</th>
+        <th class="d-none d-sm-table-cell">Local</th>
         <th>Data</th>
-        <th>Qtde. Palestrantes</th>
-        <th>Lote</th>
+        <th class="d-none d-sm-table-cell">Qtde. Pessoas</th>
+        <th class="d-none d-sm-table-cell">Lote</th>
         <th>Opções</th>
       </tr>
     </thead>
     <tbody *ngIf="events && events.length > 0">
       <tr *ngFor="let event of events">
-        <td>
+        <td class="d-none d-sm-table-cell">
           <img
             [collapse]="!showImage"
             [isAnimated]="true"
@@ -58,19 +66,18 @@
         </td>
         <td>{{ event.id }}</td>
         <td>{{ event.theme }}</td>
-        <td>{{ event.location }}</td>
+        <td class="d-none d-sm-table-cell">{{ event.location }}</td>
         <td>
           {{ event.eventDate | DateTimeFormat }}
         </td>
-        <td>{{ event.numberPeople }}</td>
-        <td>{{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}</td>
+        <td class="d-none d-sm-table-cell">{{ event.numberPeople }}</td>
+        <td class="d-none d-sm-table-cell">
+          {{ event.batchs.length > 0 ? event.batchs[0].name : "N/A" }}
+        </td>
         <td>
-          <button type="button" class="btn btn-primary btn-sm mr-2">
-            <i class="fa fa-edit" tooltip="Editar"></i>
-          </button>
           <button
             type="button"
-            class="btn btn-danger btn-sm"
+            class="btn btn-danger btn-lg"
             (click)="openModal(template)"
           >
             <i class="fa fa-times" tooltip="Excluir"></i>

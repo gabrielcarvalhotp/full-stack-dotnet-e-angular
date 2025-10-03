@@ -2,13 +2,19 @@
   class="d-flex align-items-center text-white p-3 my-3 bg-secondary rounded shadow-sm"
 >
   <div class="d-flex align-items-center mr-auto">
-    <i class="{{ iconClass }} mr-3"></i>
+    <i id="title-button" class="{{ iconClass }} mr-3"></i>
     <div class="lh-100">
       <h2 class="mb-0">{{ title }}</h2>
       <small>{{ subtitle }}</small>
     </div>
   </div>
-  <div *ngIf="buttonSearchVisible">
-    <button class="btn btn-outline-light">Buscar dados</button>
+  <div
+    *ngIf="buttonSearchVisible"
+    class="d-flex justify-content-center align-items-center"
+  >
+    <button class="btn btn-outline-light d-flex align-items-center">
+      <i id="search-button" class="fa fa-magnifying-glass"></i>
+      <p class="d-none d-sm-block mb-0 ml-2">Buscar dados</p>
+    </button>
   </div>
 </div>
