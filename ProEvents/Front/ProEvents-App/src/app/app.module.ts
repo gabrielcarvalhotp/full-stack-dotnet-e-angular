@@ -18,6 +18,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { TitleComponent } from './shared/title/title.component';
+import { EventsDetailsComponent } from './components/events/events-details/events-details.component';
+import { EventsListComponent } from './components/events/events-list/events-list.component';
 
 // Bootstrap
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -33,7 +35,6 @@ import { NotificationService } from './services/notification.service';
 
 // Pipes
 import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,8 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
     NavComponent,
     TitleComponent,
     DateTimeFormatPipe,
+    EventsDetailsComponent,
+    EventsListComponent,
   ],
   imports: [
     BrowserModule,

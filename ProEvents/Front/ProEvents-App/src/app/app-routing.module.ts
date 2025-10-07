@@ -7,9 +7,20 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { EventsDetailsComponent } from './components/events/events-details/events-details.component';
+import { EventsListComponent } from './components/events/events-list/events-list.component';
 
 const routes: Routes = [
-  { path: 'events', component: EventsComponent },
+  { path: 'events', redirectTo: 'events/list' },
+  {
+    path: 'events',
+    component: EventsComponent,
+    children: [
+      { path: 'details/:id', component: EventsDetailsComponent },
+      { path: 'details', component: EventsDetailsComponent },
+      { path: 'list', component: EventsListComponent },
+    ],
+  },
   { path: 'speakers', component: SpeakersComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'dashboard', component: DashboardComponent },
