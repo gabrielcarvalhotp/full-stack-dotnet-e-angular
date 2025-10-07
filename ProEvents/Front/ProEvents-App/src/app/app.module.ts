@@ -35,6 +35,9 @@ import { NotificationService } from './services/notification.service';
 
 // Pipes
 import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,9 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
     DateTimeFormatPipe,
     EventsDetailsComponent,
     EventsListComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
