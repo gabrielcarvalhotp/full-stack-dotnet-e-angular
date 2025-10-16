@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white rouned shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-white rouned shadow-sm" *ngIf="showMenu()">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Pro-Eventos</a>
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-users mb-2"></i>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -53,7 +55,7 @@
           >
             <a class="dropdown-item" routerLink="profile"> Perfil </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" href="#"> Sair </a>
+            <a class="dropdown-item" href="/user/login"> Sair </a>
           </div>
         </li>
       </ul>

@@ -15,11 +15,14 @@ import { EventsComponent } from './components/events/events.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { TitleComponent } from './shared/title/title.component';
 import { EventsDetailsComponent } from './components/events/events-details/events-details.component';
 import { EventsListComponent } from './components/events/events-list/events-list.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 // Bootstrap
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -35,9 +38,6 @@ import { NotificationService } from './services/notification.service';
 
 // Pipes
 import { DateTimeFormatPipe } from './helpers/DateTimeFormatPipe.pipe';
-import { UserComponent } from './components/user/user.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
 @NgModule({
   declarations: [
     AppComponent,
