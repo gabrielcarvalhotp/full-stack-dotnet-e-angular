@@ -9,4 +9,5 @@ export interface Speaker {
   email: string;
   socialMedias: SocialMedia[];
   events: Event[];
+  createdAt: Date;
 }

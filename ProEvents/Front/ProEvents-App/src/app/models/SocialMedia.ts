@@ -4,4 +4,5 @@ export interface SocialMedia {
   url: string;
   eventId: number;
   speakerId: number;
+  createdAt: Date;
 }

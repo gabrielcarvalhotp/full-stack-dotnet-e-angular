@@ -8,4 +8,5 @@ export interface Batch {
   endDate?: Date;
   quantity: number;
   event: Event;
+  createdAt: Date;
 }

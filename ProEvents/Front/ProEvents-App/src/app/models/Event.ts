@@ -11,7 +11,8 @@ export interface Event {
   imageURL: string;
   phone: string;
   email: string;
-  batchs: Batch[];
+  batches: Batch[];
   socialMedias: SocialMedia[];
   speakers: Speaker[];
+  createdAt: Date;
 }
