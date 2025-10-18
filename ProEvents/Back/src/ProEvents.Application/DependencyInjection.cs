@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using ProEvents.Application.Abstractions;
+using ProEvents.Application.Abstractions.Services;
 using ProEvents.Application.Services;
 
 namespace ProEvents.Application

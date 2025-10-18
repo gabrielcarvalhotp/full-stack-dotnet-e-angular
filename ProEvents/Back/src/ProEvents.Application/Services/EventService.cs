@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using ProEvents.Application.Abstractions;
+using ProEvents.Application.Abstractions.Services;
 using ProEvents.Domain.Entities;
-using ProEvents.Infrastructure.Abstractions;
+using ProEvents.Infrastructure.Abstractions.Repositories;
 
 namespace ProEvents.Application.Services
 {

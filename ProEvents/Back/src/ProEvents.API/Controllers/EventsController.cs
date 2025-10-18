@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProEvents.Application.Abstractions;
+using ProEvents.Application.Abstractions.Services;
 using ProEvents.Domain.Entities;
 
 namespace ProEvents.API.Controllers

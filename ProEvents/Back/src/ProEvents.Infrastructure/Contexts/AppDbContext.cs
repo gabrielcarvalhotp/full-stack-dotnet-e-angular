@@ -19,21 +19,8 @@ namespace ProEvents.Infrastructure.Contexts
         public DbSet<Speaker> Speakers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<EventSpeaker>()
-                .HasKey(es => new { es.EventId, es.SpeakerId });
-
-            modelBuilder.Entity<Event>()
-                .HasMany(e => e.SocialMedias)
-                .WithOne(s => s.Event)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Speaker>()
-                .HasMany(s => s.SocialMedias)
-                .WithOne(s => s.Speaker)
-                .OnDelete(DeleteBehavior.Cascade);
+        {            
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DependencyInjection).Assembly);            
         }
     }
 }

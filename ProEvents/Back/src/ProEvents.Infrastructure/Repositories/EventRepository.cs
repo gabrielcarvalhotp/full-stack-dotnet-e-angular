@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProEvents.Domain.Entities;
-using ProEvents.Infrastructure.Abstractions;
+using ProEvents.Infrastructure.Abstractions.Repositories;
 using ProEvents.Infrastructure.Contexts;
 
 namespace ProEvents.Infrastructure.Repositories
@@ -18,7 +18,7 @@ namespace ProEvents.Infrastructure.Repositories
         {
             IQueryable<Event> query = _context.Events
                 .AsNoTracking()
-                .Include(e => e.Batchs)
+                .Include(e => e.Batches)
                 .Include(e => e.SocialMedias)
                 .OrderBy(e => e.Id);
 
@@ -36,7 +36,7 @@ namespace ProEvents.Infrastructure.Repositories
         {
             IQueryable<Event> query = _context.Events
                 .AsNoTracking()
-                .Include(e => e.Batchs)
+                .Include(e => e.Batches)
                 .Include(e => e.SocialMedias);
 
             if (includeSpeakers)

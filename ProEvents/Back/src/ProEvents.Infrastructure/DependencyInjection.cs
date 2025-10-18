@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProEvents.Infrastructure.Abstractions;
+using ProEvents.Infrastructure.Abstractions.Repositories;
 using ProEvents.Infrastructure.Contexts;
 using ProEvents.Infrastructure.Repositories;
 
@@ -20,7 +20,7 @@ namespace ProEvents.Infrastructure
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                options.UseFirebird(configuration.GetConnectionString("DefaultConnection"));
             });
         }
 
